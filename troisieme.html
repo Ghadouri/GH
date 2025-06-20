@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Résultat - Troisième Année</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 40px; text-align: center; }
+    input, button { padding: 10px; font-size: 16px; margin: 10px; width: 250px; }
+    button { background: #007bff; color: white; border: none; border-radius: 5px; }
+    #resultat { margin-top: 30px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h2>Résultat - Troisième Année</h2>
+  <input type="text" id="nni" placeholder="Entrez votre NNI">
+  <button onclick="chercherResultat()">Voir le résultat</button>
+
+  <div id="resultat"></div>
+
+  <script>
+    async function chercherResultat() {
+      const nni = document.getElementById("nni").value.trim();
+      if (!nni) return alert("Veuillez entrer un NNI.");
+
+      try {
+        const response = await fetch("https://ghadouri.github.io/gh.JSON"); // adapte l'URL si besoin
+        const data = await response.json();
+
+        const eleve = data.find(p => p.nni === nni);
+
+        const div = document.getElementById("resultat");
+        if (eleve) {
+          div.innerHTML = `
+            <p><strong>Nom :</strong> ${eleve.nom}</p>
+            <p><strong>Moyenne :</strong> ${eleve.moyenne}</p>
+            <p><strong>Rang :</strong> ${eleve.rang}</p>
+          `;
+        } else {
+          div.innerHTML = "<span style='color:red;'>❌ NNI non trouvé.</span>";
+        }
+      } catch (e) {
+        document.getElementById("resultat").innerText = "Erreur lors du chargement du fichier.";
+      }
+    }
+  </script>
+</body>
+</html>
