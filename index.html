@@ -1,27 +1,85 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Page d'Accueil</title>
   <style>
-    body { text-align: center; font-family: sans-serif; padding: 50px; background-color: #f0f0f0; }
-    h1 { font-size: 30px; color: #333; }
-    .btn {
-      padding: 15px 30px;
-      margin: 20px;
-      display: inline-block;
-      background: #28a745;
-      color: white;
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 10px;
+    /* استدعاء خط Google Font أنيق */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    /* إعادة ضبط وتنسيق عام */
+    * {
+      box-sizing: border-box;
+      margin: 0; 
+      padding: 0;
     }
-    .btn.blue { background: #007bff; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #e0f7e9, #a4d4ae);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      color: #2c3e50;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 40px;
+      margin: 0 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+      background: #28a745;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    .btn:hover {
+      background: #218838;
+      box-shadow: 0 8px 20px rgba(33, 136, 56, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .btn.blue {
+      background: #007bff;
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+    }
+    .btn.blue:hover {
+      background: #0056b3;
+      box-shadow: 0 8px 20px rgba(0, 86, 179, 0.6);
+    }
+
+    /* تصميم متجاوب للأجهزة الصغيرة */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        margin: 10px 5px;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Bienvenue sur la page des résultats</h1>
-  <a class="btn" href="deuxieme.html">Deuxième Année</a>
-  <a class="btn blue" href="troisieme.html">Troisième Année</a>
+  <a class="btn" href="deuxieme.html" aria-label="Accéder à la deuxième année">Deuxième Année</a>
+  <a class="btn blue" href="troisieme.html" aria-label="Accéder à la troisième année">Troisième Année</a>
 </body>
 </html>
