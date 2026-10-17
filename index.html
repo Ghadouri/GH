@@ -2,81 +2,667 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نادي تميز الثقافي - ثانوية شوم</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نادي تميّز الثقافي | ثانوية شوم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #101f32;
+  --green: #176b58;
+  --gold: #d8b36a;
+  --cream: #f8f6f0;
+  --white: #fff;
+  --muted: #75818a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', Tahoma, sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.9;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.container {
+  width: min(1160px, 90%);
+  margin: auto;
+}
+
+/* رأس الموقع */
+header {
+  background: rgba(16,31,50,.98);
+  color: white;
+  border-bottom: 1px solid #d8b36a44;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.logo {
+  width: 51px;
+  height: 51px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  font-size: 29px;
+  font-weight: 900;
+  border-radius: 50% 50% 8px 8px;
+}
+
+.brand h2 { font-size: 17px; line-height: 1.5; }
+.brand p { color: #c4cbd1; font-size: 11px; }
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+nav a {
+  font-size: 13px;
+  color: #e1e5e8;
+  transition: .3s;
+}
+
+nav a:hover { color: var(--gold); }
+
+.nav-button {
+  border: 1px solid var(--gold);
+  padding: 9px 17px;
+  color: var(--gold);
+  border-radius: 4px;
+}
+
+/* الواجهة الرئيسية */
+.hero {
+  min-height: 620px;
+  background:
+    radial-gradient(ellipse at 12% 15%, #176b5844, transparent 42%),
+    linear-gradient(120deg, #101f32, #142b3d);
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "ت";
+  position: absolute;
+  left: 3%;
+  top: -115px;
+  font-size: 560px;
+  font-weight: 900;
+  line-height: 1;
+  color: #ffffff06;
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 55px;
+  padding-block: 85px;
+  position: relative;
+}
+
+.label {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.label::before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 4.7vw, 61px);
+  line-height: 1.55;
+  margin: 18px 0;
+  font-weight: 900;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero-text {
+  max-width: 550px;
+  color: #c2ccd5;
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+.actions {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: .25s;
+  display: inline-block;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn-outline {
+  border: 1px solid #ffffff55;
+  color: white;
+}
+
+.btn:hover { transform: translateY(-3px); }
+
+.hero-caption {
+  margin-top: 35px;
+  color: #a8b7c3;
+  font-size: 11px;
+}
+
+/* رسم زخرفي للكتاب */
+.art {
+  min-height: 390px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.orbit {
+  width: 310px;
+  height: 310px;
+  border: 1px solid #d8b36a65;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.orbit::before, .orbit::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff18;
+  border-radius: 50%;
+}
+
+.orbit::before { inset: 22px; }
+.orbit::after { inset: -18px; }
+
+.book {
+  width: 205px;
+  height: 145px;
+  position: relative;
+  display: flex;
+  filter: drop-shadow(0 20px 25px #0005);
+  transform: rotate(-5deg);
+}
+
+.page {
+  width: 50%;
+  height: 100%;
+  background: #f4eee0;
+  border: 1px solid #d8b36a;
+  position: relative;
+}
+
+.page:first-child {
+  border-radius: 5px 0 0 5px;
+  transform: skewY(7deg);
+}
+
+.page:last-child {
+  border-radius: 0 5px 5px 0;
+  transform: skewY(-7deg);
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  top: 32px;
+  left: 15%;
+  right: 15%;
+  height: 45px;
+  border-top: 1px solid #d8b36a;
+  border-bottom: 1px solid #d8b36a;
+}
+
+.book-mark {
+  position: absolute;
+  z-index: 2;
+  font-size: 56px;
+  color: var(--green);
+  font-weight: 900;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.art-star {
+  position: absolute;
+  color: var(--gold);
+  font-size: 25px;
+}
+
+.star1 { top: 15px; right: 40px; }
+.star2 { bottom: 28px; left: 40px; font-size: 35px; }
+
+.art-title {
+  position: absolute;
+  bottom: 4px;
+  color: #d8c7a2;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+/* شريط القيم */
+.values {
+  background: white;
+  border-bottom: 1px solid #e8e2d6;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 25px 0;
+}
+
+.value {
+  text-align: center;
+  padding: 6px 15px;
+  border-left: 1px solid #e7e2d8;
+}
+
+.value:last-child { border: 0; }
+
+.value strong {
+  color: var(--green);
+  display: block;
+  font-size: 16px;
+}
+
+.value span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* الأقسام العامة */
+section.content { padding: 90px 0; }
+
+.section-head {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 45px;
+}
+
+.section-head .label { color: var(--green); }
+
+.section-head h2 {
+  font-size: clamp(27px, 3.5vw, 39px);
+  margin: 8px 0 12px;
+}
+
+.section-head p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* عن النادي */
+.about-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 65px;
+  align-items: center;
+}
+
+.about-emblem {
+  min-height: 280px;
+  background: var(--navy);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 25px;
+  border-radius: 4px;
+  outline: 1px solid var(--gold);
+  outline-offset: -12px;
+}
+
+.about-emblem .big { font-size: 65px; font-weight: 900; line-height: 1.4; }
+.about-emblem p { font-size: 12px; color: #e2d7c0; }
+
+.about-copy h2 {
+  font-size: 32px;
+  margin: 10px 0 18px;
+}
+
+.about-copy h2 span { color: var(--green); }
+
+.about-copy p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* الأنشطة */
+.activities { background: #eeeee7; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 30px 25px;
+  border: 1px solid #e5e1d7;
+  border-radius: 5px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 18px 35px #101f320c;
+}
+
+.card .icon {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  background: #e8f2ed;
+  color: var(--green);
+  font-size: 26px;
+  margin-bottom: 22px;
+  border-radius: 4px;
+}
+
+.card small { color: #b08b45; font-size: 10px; font-weight: 800; }
+.card h3 { font-size: 18px; margin: 5px 0 10px; }
+.card p { font-size: 12px; color: var(--muted); }
+
+/* الأهداف */
+.goals {
+  background: var(--green);
+  color: white;
+}
+
+.goals .section-head h2 { color: white; }
+.goals .section-head p { color: #d4e6df; }
+.goals .section-head .label { color: var(--gold); }
+
+.goal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.goal {
+  border: 1px solid #ffffff3d;
+  padding: 24px;
+}
+
+.goal span { color: var(--gold); font-size: 24px; font-weight: 900; }
+.goal h3 { margin: 8px 0; font-size: 16px; }
+.goal p { color: #d4e6df; font-size: 12px; }
+
+/* الدعوة للمشاركة */
+.join {
+  background: var(--cream);
+  padding: 65px 0;
+  text-align: center;
+}
+
+.join h2 { font-size: 30px; margin: 10px 0; }
+.join p { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+/* التذييل */
+footer {
+  background: var(--navy);
+  color: white;
+  padding: 30px 0;
+  text-align: center;
+}
+
+footer .footer-logo {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+footer p { font-size: 11px; color: #b9c4cc; margin-top: 5px; }
+
+@media (max-width: 800px) {
+  .navbar { padding: 15px 0; flex-wrap: wrap; }
+  nav { flex-wrap: wrap; gap: 12px 18px; }
+  .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+  .hero-text { margin-inline: auto; }
+  .actions { justify-content: center; }
+  .hero-caption { margin-top: 22px; }
+  .art { min-height: 300px; }
+  .orbit { transform: scale(.8); }
+  .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .about-emblem { min-height: 220px; }
+  .cards, .goal-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .container { width: 92%; }
+  .brand h2 { font-size: 15px; }
+  .hero { min-height: auto; }
+  .hero-grid { padding-block: 55px; }
+  .hero h1 { font-size: 37px; }
+  .hero-text { font-size: 13px; }
+  .values-grid { padding-block: 15px; }
+  .value { padding: 4px; }
+  .value strong { font-size: 13px; }
+  .value span { font-size: 10px; }
+  section.content { padding: 60px 0; }
+  .section-head { margin-bottom: 30px; }
+  .about-copy h2 { font-size: 27px; }
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <nav class="container">
-    <div class="logo">نادي تميّز</div>
-    <a href="#home">الرئيسية</a>
-    <a href="#about">عن النادي</a>
-    <a href="#activities">الأنشطة</a>
-    <a href="#goals">أهدافنا</a>
-  </nav>
+  <div class="container navbar">
+    <a href="#home" class="brand">
+      <div class="logo">ت</div>
+      <div>
+        <h2>نادي تميّز الثقافي</h2>
+        <p>ثانوية شوم · موريتانيا</p>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#about">عن النادي</a>
+      <a href="#activities">الأنشطة</a>
+      <a href="#goals">أهدافنا</a>
+      <a href="#join" class="nav-button">انضم إلينا</a>
+    </nav>
+  </div>
 </header>
 
 <main>
   <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="label">الثقافة · المعرفة · الإبداع</span>
+        <h1>معًا نحو جيلٍ<br><span>مبدع ومتميّز</span></h1>
+        <p class="hero-text">
+          من ثانوية شوم، ننطلق بالأفكار ونحتفي بالمواهب،
+          ونصنع فضاءً ثقافيًا يجمع المعرفة والإبداع وروح المبادرة.
+        </p>
+        <div class="actions">
+          <a class="btn btn-gold" href="#about">اكتشف النادي ←</a>
+          <a class="btn btn-outline" href="#activities">استكشف أنشطتنا</a>
+        </div>
+        <p class="hero-caption">نؤمن أن كل طالب يحمل فكرة تستحق أن ترى النور.</p>
+      </div>
+
+      <div class="art" aria-label="رسم زخرفي لكتاب يرمز إلى المعرفة">
+        <div class="orbit">
+          <span class="art-star star1">✦</span>
+          <span class="art-star star2">✧</span>
+          <div class="book">
+            <div class="page"></div>
+            <div class="page"></div>
+            <span class="book-mark">ت</span>
+          </div>
+        </div>
+        <div class="art-title">اقرأ · فكّر · أبدع</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="values">
+    <div class="container values-grid">
+      <div class="value"><strong>المعرفة</strong><span>نكتشف آفاقًا جديدة</span></div>
+      <div class="value"><strong>الإبداع</strong><span>نحوّل الأفكار إلى مبادرات</span></div>
+      <div class="value"><strong>التعاون</strong><span>ننجح معًا بروح الفريق</span></div>
+    </div>
+  </div>
+
+  <section class="content" id="about">
+    <div class="container about-grid">
+      <div class="about-emblem">
+        <div>
+          <div class="big">تميّز</div>
+          <p>بالعلم والثقافة نرتقي</p>
+        </div>
+      </div>
+      <div class="about-copy">
+        <span class="label">حكايتنا ورسالتنا</span>
+        <h2>مساحةٌ للفكر،<br><span>ومنبَرٌ للمواهب.</span></h2>
+        <p>
+          نادي تميّز الثقافي بثانوية شوم مبادرة طلابية تسعى إلى إثراء
+          الحياة المدرسية بالأنشطة الثقافية والعلمية والتربوية.
+        </p>
+        <p>
+          نعمل على تشجيع الطلاب على القراءة والحوار والعمل الجماعي،
+          وتهيئة بيئة تساعدهم على اكتشاف مواهبهم والتعبير عن أفكارهم بثقة.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content activities" id="activities">
     <div class="container">
-      <h1>نادي تميّز الثقافي</h1>
-      <p>ثانوية شوم — معًا نحو جيل مبدع ومتميز بالعلم والثقافة والعمل الجماعي.</p>
-      <a class="btn" href="#about">اكتشف النادي</a>
+      <div class="section-head">
+        <span class="label">مساحات للتعلّم والعطاء</span>
+        <h2>أنشطتنا الثقافية</h2>
+        <p>برامج متنوعة تمنح الطالب فرصة للتعبير والتعلّم والمشاركة.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">📚</div>
+          <small>01 — المعرفة</small>
+          <h3>القراءة والثقافة</h3>
+          <p>لقاءات قرائية ومسابقات معرفية لتوسيع المدارك وتعزيز حب المطالعة.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">✍</div>
+          <small>02 — التعبير</small>
+          <h3>الحوار والإلقاء</h3>
+          <p>تنمية مهارات الخطابة والكتابة والحوار البنّاء واحترام الرأي الآخر.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🌱</div>
+          <small>03 — المبادرة</small>
+          <h3>التطوع وخدمة المجتمع</h3>
+          <p>مبادرات جماعية تعزّز المسؤولية والتعاون وخدمة المدرسة ومحيطها.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="container">
-    <h2>من نحن؟</h2>
-    <p>نادي تميز مبادرة طلابية تهدف إلى تنمية المواهب، وتشجيع القراءة، وتنظيم الأنشطة الثقافية والعلمية في ثانوية شوم.</p>
-  </section>
+  <section class="content goals" id="goals">
+    <div class="container">
+      <div class="section-head">
+        <span class="label">ما الذي نطمح إليه؟</span>
+        <h2>أهداف تصنع الفرق</h2>
+        <p>طموحنا أن تكون المدرسة فضاءً حيًا للعلم والمبادرة.</p>
+      </div>
 
-  <section id="activities" class="container">
-    <h2>أنشطتنا</h2>
-    <div class="cards">
-      <article class="card">
-        <h3>📚 القراءة والثقافة</h3>
-        <p>مسابقات ثقافية وتبادل المعرفة بين الطلاب.</p>
-      </article>
-      <article class="card">
-        <h3>🎤 الحوار والإبداع</h3>
-        <p>تنمية مهارات الإلقاء والتعبير والنقاش.</p>
-      </article>
-      <article class="card">
-        <h3>🌱 العمل التطوعي</h3>
-        <p>مبادرات طلابية لخدمة المدرسة والمجتمع.</p>
-      </article>
+      <div class="goal-grid">
+        <article class="goal">
+          <span>01</span>
+          <h3>اكتشاف المواهب</h3>
+          <p>فتح المجال أمام الطلاب لإظهار قدراتهم وتنمية مهاراتهم.</p>
+        </article>
+        <article class="goal">
+          <span>02</span>
+          <h3>نشر ثقافة القراءة</h3>
+          <p>جعل المعرفة عادة يومية وطريقًا إلى التفكير المستقل.</p>
+        </article>
+        <article class="goal">
+          <span>03</span>
+          <h3>تعزيز روح المبادرة</h3>
+          <p>تشجيع الأفكار الإيجابية والعمل الجماعي والمسؤولية.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section id="goals" class="container">
-    <h2>أهدافنا</h2>
-    <div class="cards">
-      <article class="card">
-        <h3>تنمية المواهب</h3>
-        <p>اكتشاف قدرات الطلاب وتشجيعهم على الإبداع.</p>
-      </article>
-      <article class="card">
-        <h3>نشر الثقافة</h3>
-        <p>تعزيز حب القراءة والتعلم المستمر.</p>
-      </article>
-      <article class="card">
-        <h3>روح الفريق</h3>
-        <p>ترسيخ التعاون والمسؤولية والمبادرة.</p>
-      </article>
+  <section class="join" id="join">
+    <div class="container">
+      <span class="label">كن جزءًا من الحكاية</span>
+      <h2>تميّزك يبدأ بمبادرتك.</h2>
+      <p>لديك موهبة أو فكرة ثقافية؟ شارك بها وساهم في إثراء الحياة المدرسية.</p>
+      <a class="btn btn-gold" href="mailto:club.tamayoz@example.com?subject=نادي%20تميز%20الثقافي">تواصل مع النادي ←</a>
     </div>
-  </section>
-
-  <section class="join">
-    <h2>كن جزءًا من التميّز!</h2>
-    <p>ساهم بفكرتك وموهبتك في أنشطة النادي.</p>
   </section>
 </main>
 
 <footer>
-  <p>© 2026 نادي تميّز الثقافي — ثانوية شوم</p>
+  <div class="container">
+    <div class="footer-logo">نادي تميّز الثقافي</div>
+    <p>ثانوية شوم · بالعِلم والثقافة نرتقي</p>
+    <p>© 2026 نادي تميّز الثقافي. جميع الحقوق محفوظة.</p>
+  </div>
 </footer>
 
 </body>
